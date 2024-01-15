@@ -12,10 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('openings_time', function (Blueprint $table) {
-            $table->id('id_opening_time');
+            $table->id();
             $table->string('opening_day', 50);
             $table->time('opening_hour', $precison = 0);
             $table->time('closure_hour', $precision = 0);
+            $table->foreignId('adress_id')
+            ->constrained()
+            ->onUpdate('restrict')
+            ->onDelete('restrict');
+            $table->foreignId('tattoo_artist_id')
+            ->constrained()
+            ->onUpdate('restrict')
+            ->onDelete('restrict');
         });
     }
 

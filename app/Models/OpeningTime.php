@@ -9,6 +9,5 @@ class OpeningTime extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_opening_time';
 
 }

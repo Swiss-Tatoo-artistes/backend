@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cantons', function (Blueprint $table) {
+        Schema::create('languages_tattoo_artists', function (Blueprint $table) {
             $table->id();
-            $table->string('image_url');
+            $table->timestamps();
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cantons');
+        Schema::dropIfExists('languages_tattoo_artists');
     }
 };
