@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('style_tattoo_artists', function (Blueprint $table) {
+        Schema::create('styles_tattoo_artists', function (Blueprint $table) {
             $table->foreignId('tattoo_artist_id')
             ->constrained()
             ->onUpdate('cascade')
