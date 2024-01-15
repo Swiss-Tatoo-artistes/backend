@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('images', function (Blueprint $table) {
-            $table->id('id_image');
+            $table->id();
             $table->string('image_url');
+            $table->foreignId('tattoo_artist_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

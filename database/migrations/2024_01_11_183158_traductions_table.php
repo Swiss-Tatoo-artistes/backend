@@ -12,11 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('traductions', function (Blueprint $table) {
-            $table->id('id_traduction');
+            $table->id();
             $table->string('entities', 255);
             $table->string('language_translate', 100);
             $table->string('name', 255)->nullable(false);
             $table->string('description', 255);
+            $table->foreignId('style_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreignId('language_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+            $table->foreignId('canton_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
+
         });
     }
 

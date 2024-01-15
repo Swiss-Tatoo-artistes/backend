@@ -9,6 +9,5 @@ class TattooArtist extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_tattoo_artist';
     
 }

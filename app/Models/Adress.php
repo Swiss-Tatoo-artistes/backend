@@ -9,6 +9,5 @@ class Adress extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_adress';
 
 }

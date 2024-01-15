@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tattoo_artists', function (Blueprint $table) {
-            $table->id('id_tattoo_artist');
+            $table->id();
             $table->string('lastname', 255);
             $table->string('name', 255);
             $table->string('presentation', 300)->nullable();
-            $table->string('pseudo', 25);
+            $table->string('pseudo', 25)->unique();
             $table->integer('home_phone')->nullable();
             $table->integer('phone');
-            $table->string('mail', 255);
+            $table->string('mail', 255)->unique();
             $table->string('facebook_sociallink', 255)->nullable();
             $table->string('instagram_sociallink', 255)->nullable();
             $table->string('x_sociallink', 255)->nullable();
