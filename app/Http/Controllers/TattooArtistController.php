@@ -27,8 +27,9 @@ class TattooArtistController extends Controller
     //Display all the tattooartists
     public function index()
     {
-        $tattooArtists = DB::table('tattoo_artists')->get();
-
+        // A revoir *************************************//
+        $tattooArtists = TattooArtist::get();
+        // return response()->json(compact('tattooArtists'), 200);
         return response()->json(['tattooArtists' => $tattooArtists], 200);
     }
 

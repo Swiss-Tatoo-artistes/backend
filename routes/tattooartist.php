@@ -5,6 +5,9 @@ use App\Http\Controllers\TattooArtistController;
 
 
 Route::controller(TattooArtistController::class)->group(function (){
+
+
+    // Ili est possible de grouper toute ces routes, mettre PUT, DELETE, UPDATE dans les methode URL, mettre au pluriel mais à confirmer
     
     // The Route to display all the tattooartists
     Route::get('/tattooartists', 'index');
