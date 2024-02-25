@@ -16,9 +16,9 @@ class Canton extends Model
         return $this->hasMany(Canton::class);
     }
 
-    public function traductions(): HasMany
+    public function cantonTraductions(): HasMany
     {
-        return $this->hasMany(Traduction::class);
+        return $this->hasMany(CantonTraduction::class);
     }
 
 }
