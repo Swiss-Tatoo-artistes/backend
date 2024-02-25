@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\TattooArtist;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 
 class TattooArtistController extends Controller
@@ -36,7 +35,7 @@ class TattooArtistController extends Controller
     // Display a specific tattoo artists
     public function show($id)
     {
-        $tattooArtist = DB::table('tattoo_artists')->find($id);
+        $tattooArtist = TattooArtist::find($id);
 
         if ($tattooArtist) {
             return response()->json(['tattooArtist' => $tattooArtist], 200);

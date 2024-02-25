@@ -12,8 +12,8 @@ class TattooArtist extends Model
 {
     use HasFactory;
 
-    // A revoir ****************/
-    protected $table = 'tattoo_artist';
+    // Spécifié le nom de la table afin de faciliter le maintien si changement de nom de table
+    protected $table = 'tattoo_artists';
 
     // Relationships
     public function adresses(): HasMany
