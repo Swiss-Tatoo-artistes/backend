@@ -13,9 +13,9 @@ class Style extends Model
     use HasFactory;
 
     // Relationships
-    public function traductions():HasMany
+    public function styleTraductions():HasMany
     {
-        return $this->hasMany(Traduction::class);
+        return $this->hasMany(StyleTraduction::class);
     }
 
     public function tattooArtists(): BelongsToMany
