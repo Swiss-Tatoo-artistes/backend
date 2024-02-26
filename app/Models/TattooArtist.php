@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class TattooArtist extends Model
 {
     use HasFactory;
 
-    // A revoir ****************/
-    protected $table = 'tattoo_artist';
+    // Spécifié le nom de la table afin de faciliter le maintien si changement de nom de table
+    protected $table = 'tattoo_artists';
 
     // Relationships
     public function adresses(): HasMany
@@ -41,9 +41,9 @@ class TattooArtist extends Model
         return $this->belongsToMany(Style::class, 'style_tattoo_artist');
     }
 
-    public function user(): BelongsTo
+    public function user(): HasOne
     {
-        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
     }
 
 

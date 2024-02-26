@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
         Schema::create('tattoo_artists', function (Blueprint $table) {
             $table->id();
             $table->string('presentation', 300)->nullable();
@@ -21,16 +20,8 @@ return new class extends Migration
             $table->string('instagram_sociallink', 255)->nullable();
             $table->string('x_sociallink', 255)->nullable();
             $table->string('tiktok_sociallink', 255)->nullable();
-            $table->foreignId('user_id')
-            ->nullable()
-            ->constrained()
-            ->onUpdate('restrict')
-            ->onDelete('restrict');
-
-
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
-
 
         });
     }

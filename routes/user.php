@@ -9,15 +9,15 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/users', 'index');
 
     //The Route to display a specific user
-    Route::get('/user/{id}', 'show');
+    Route::get('/users/{id}', 'show');
 
     // The Route to create a new user
-    Route::post('/createuser', 'create');
+    Route::post('/users', 'create');
 
     //The Route to update a specific user
-    Route::post('/updateuser/{id}', 'update');
+    Route::put('/users/{id}', 'update');
 
     //The Route to delete a specific user
-    Route::post('/deleteuser/{id}', 'delete');
+    Route::delete('/users/{id}', 'delete');
 
 });
