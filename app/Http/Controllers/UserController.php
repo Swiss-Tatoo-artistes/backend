@@ -25,7 +25,7 @@ class UserController extends Controller
     //Display all the users
     public function index()
     {
-        $users = DB::table('users')->get();
+        $users = User::get();
 
         return response()->json(['users' => $users], 200);
     }
@@ -33,7 +33,7 @@ class UserController extends Controller
     // Display a specific user
     public function show($id)
     {
-        $user = DB::table('users')->find($id);
+        $user = User::find($id);
 
         if ($user) {
             return response()->json(['user' => $user], 200);
@@ -79,9 +79,9 @@ class UserController extends Controller
     {
         $deleted = User::destroy($id);
 
-        if($deleted){
+        if ($deleted) {
             return response()->json(['message' => 'User deleted successfully'], 200);
-        }else{
+        } else {
             return response()->json(['message' => 'Failed to delete user'], 404);
         }
     }
