@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 include('tattooartist.php');
 include('user.php');
+include('canton.php');

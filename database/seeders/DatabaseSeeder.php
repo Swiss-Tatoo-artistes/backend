@@ -19,8 +19,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $this->call([
+            CantonsTableSeeder::class,
+            CantonTraductionsTableSeeder::class
+        ]);
         
         User::factory(10)->create();
+
 
     }
 }
