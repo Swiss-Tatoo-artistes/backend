@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TattooArtist;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -27,7 +28,16 @@ class TattooArtistController extends Controller
     public function index()
     {
         // A revoir *************************************//
-        $tattooArtists = TattooArtist::get();
+        $tattooArtists = User::where('is_tattoo_artist', 1)
+            ->with('tattooArtists')
+            ->get()
+            ->map(function ($user) {
+                $userArray = $user->toArray();
+                $tattooArtistArray = $userArray['tattoo_artists'];
+                unset($userArray['tattoo_artists']);
+                return array_merge($userArray, $tattooArtistArray);
+            });
+
         // return response()->json(compact('tattooArtists'), 200);
         return response()->json(['tattooArtists' => $tattooArtists], 200);
     }
@@ -35,7 +45,16 @@ class TattooArtistController extends Controller
     // Display a specific tattoo artists
     public function show($id)
     {
-        $tattooArtist = TattooArtist::find($id);
+        $tattooArtist = User::where('id', $id)
+            ->where('is_tattoo_artist', 1)
+            ->with('tattooArtists')
+            ->get()
+            ->map(function ($user) {
+                $userArray = $user->toArray();
+                $tattooArtistArray = $userArray['tattoo_artists'];
+                unset($userArray['tattoo_artists']);
+                return array_merge($userArray, $tattooArtistArray);
+            });
 
         if ($tattooArtist) {
             return response()->json(['tattooArtist' => $tattooArtist], 200);
@@ -44,6 +63,7 @@ class TattooArtistController extends Controller
         }
     }
 
+    
     // Create new tattoo artist
     public function create(Request $request)
     {
