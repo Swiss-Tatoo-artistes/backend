@@ -5,7 +5,6 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
-use App\Models\TattooArtist;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,8 +21,6 @@ class DatabaseSeeder extends Seeder
         // ]);
         
         User::factory(10)->create();
-        TattooArtist::factory(10)->create();
-
 
     }
 }
