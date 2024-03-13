@@ -22,11 +22,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->unsignedBigInteger('tattoo_artists_id')->nullable();
-            $table->foreign('tattoo_artists_id')->references('id')->on('tattoo_artists')
-                ->restrictOnDelete()
-                ->restrictOnUpdate();
             $table->timestamps();
+
+
         });
     }
 
