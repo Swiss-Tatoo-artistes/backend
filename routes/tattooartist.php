@@ -13,7 +13,10 @@ Route::controller(TattooArtistController::class)->group(function (){
     Route::get('/tattooartists', 'index');
 
     // The Route to display a specific tattooartist
-    Route::get('/tattooartists/{id}', 'show');
+    Route::get('/tattooartists/show/{id}', 'show');
+
+    //The Route to display all tattooartist of a specific canton
+    Route::get('{language_translate}/tattooartists/show-by-canton/{canton}', 'showByCanton');
 
     // The Route to create a new tattoo artist
     Route::post('/tattooartists', 'create');

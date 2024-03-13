@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\TattooArtist;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 
@@ -27,34 +26,28 @@ class TattooArtistController extends Controller
     //Display all the tattooartists
     public function index()
     {
-        // A revoir *************************************//
-        $tattooArtists = User::where('is_tattoo_artist', 1)
-            ->with('tattooArtists')
-            ->get()
-            ->map(function ($user) {
-                $userArray = $user->toArray();
-                $tattooArtistArray = $userArray['tattoo_artists'];
-                unset($userArray['tattoo_artists']);
-                return array_merge($userArray, $tattooArtistArray);
-            });
+        $tattooArtists = TattooArtist::with(['user' => function ($query) {
+            $query
+                ->where('is_tattoo_artist', true)
+                ->select('id', 'name', 'lastname', 'pseudo');
+        }])
+            ->get();
 
-        // return response()->json(compact('tattooArtists'), 200);
         return response()->json(['tattooArtists' => $tattooArtists], 200);
     }
+
+
 
     // Display a specific tattoo artists
     public function show($id)
     {
-        $tattooArtist = User::where('id', $id)
-            ->where('is_tattoo_artist', 1)
-            ->with('tattooArtists')
-            ->get()
-            ->map(function ($user) {
-                $userArray = $user->toArray();
-                $tattooArtistArray = $userArray['tattoo_artists'];
-                unset($userArray['tattoo_artists']);
-                return array_merge($userArray, $tattooArtistArray);
-            });
+
+        $tattooArtist = TattooArtist::where('id', $id)
+            ->with(['user' => function ($query) {
+                $query
+                    ->select('id', 'name', 'lastname', 'pseudo');
+            }])
+            ->get();
 
         if ($tattooArtist) {
             return response()->json(['tattooArtist' => $tattooArtist], 200);
@@ -63,7 +56,27 @@ class TattooArtistController extends Controller
         }
     }
 
-    
+
+
+
+    // A MODIFIER ***********************************************************
+    // Afficher tous les artistes tatoueurs d'un canton spécifique
+    public function showByCanton($language_translate, $canton)
+    {
+        $tattooArtists = TattooArtist::whereHas('user', function ($query) {
+            $query->where('is_tattoo_artist', 1);
+        })
+            // ->whereHas('canton', function ($query) use ($canton) {
+            //     $query->whereHas('cantonTraductions', function ($query) use ($canton) {
+            //         $query->where('language_translate', $language_translate)->where('name', $canton);
+            //     });
+            // })
+            ->get();
+
+        return response()->json(['tattoo_artists' => $tattooArtists], 200);
+    }
+
+
     // Create new tattoo artist
     public function create(Request $request)
     {

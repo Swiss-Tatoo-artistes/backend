@@ -22,6 +22,10 @@ return new class extends Migration
             $table->string('tiktok_sociallink', 255)->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')
+                ->restrictOnDelete()
+                ->restrictOnUpdate();
 
         });
     }
