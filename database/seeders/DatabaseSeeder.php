@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CantonsTableSeeder::class,
+            TraductionsTableSeeder::class
         ]);
         
         User::factory(10)->create();

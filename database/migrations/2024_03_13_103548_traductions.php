@@ -18,14 +18,20 @@ return new class extends Migration
             $table->string('value', 255);
             $table->string('language', 10);
             $table->foreignId('style_id')
+                ->nullable()
+                ->default(null)
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignId('language_id')
+                $table->foreignId('language_id')
+                ->nullable()
+                ->default(null)
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->foreignId('canton_id')
+                $table->foreignId('canton_id')
+                ->nullable()
+                ->default(null)
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
