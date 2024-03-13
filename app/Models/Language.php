@@ -19,7 +19,6 @@ class Language extends Model
 
     public function traductions(): HasMany
     {
-        return $this->hasMany(LanguageTraduction::class);
+        return $this->hasMany(Traduction::class);
     }
-
 }
