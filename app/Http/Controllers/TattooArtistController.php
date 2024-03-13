@@ -47,7 +47,7 @@ class TattooArtistController extends Controller
                 $query
                     ->select('id', 'name', 'lastname', 'pseudo');
             }])
-            ->get();
+            ->first();
 
         if ($tattooArtist) {
             return response()->json(['tattooArtist' => $tattooArtist], 200);
@@ -75,6 +75,7 @@ class TattooArtistController extends Controller
 
         return response()->json(['tattoo_artists' => $tattooArtists], 200);
     }
+    /******************************************************************************** */
 
 
     // Create new tattoo artist
